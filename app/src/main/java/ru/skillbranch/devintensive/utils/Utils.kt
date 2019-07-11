@@ -7,26 +7,26 @@ object Utils {
         if (fullName.isNullOrBlank()) {
             return null to null;
         }
-        val names: List<String>? = fullName?.split(' ');
+        val names: List<String>? = fullName.split(' ');
         return names?.getOrNull(0) to names?.getOrNull(1);
     }
 
     fun toInitials(firstName: String?, lastName:String?): String? {
-        var initials: String = "";
+        var initials: MutableList<Char> = mutableListOf()
         if (!firstName.isNullOrBlank()) {
-            initials += firstName[0].toUpperCase().toString()
+            initials.add(firstName[0].toUpperCase())
         }
         if (!lastName.isNullOrBlank()) {
-            initials += lastName[0].toUpperCase().toString()
+            initials.add(lastName[0].toUpperCase())
         }
-        return if (initials.isBlank()) {
+        return if (initials.isEmpty()) {
             null
         } else {
-            initials
+            initials.joinToString(separator = "")
         }
     }
 
-    /*fun transliteration(payload: String, divider: String = " ") : String {
+    fun transliteration(payload: String, divider: String = " ") : String {
         val translit: StringBuilder = StringBuilder()
         val letters = mapOf(
         'а' to "a",
@@ -64,12 +64,17 @@ object Utils {
         'я' to "ya",
         ' ' to divider)
         payload.forEach {
-            var lat:String? = letters[it.toLowerCase()];
-            translit.append(lat);
-            if(it.isUpperCase()) {
-                translit[translit.length - lat!!.length] = translit[translit.length - lat!!.length].toUpperCase()
+            var lat = letters[it.toLowerCase()];
+            if (lat != null) {
+                translit.append(lat);
+            }
+            else {
+                translit.append(it)
+            }
+            if(lat != null && it.isUpperCase()) {
+                translit[translit.count() - lat.count()] = translit[translit.count() - lat.count()].toUpperCase()
             }
         }
         return translit.toString()
-    }*/
+    }
 }
