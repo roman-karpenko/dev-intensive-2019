@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontLarge">24sp</dimen>
+    <dimen name="fontNormal">16sp</dimen>
+    <dimen name="fontSmall">12sp</dimen>
+
+    <dimen name="spacingHuge">32dp</dimen>
+    <dimen name="spacingLarge">24dp</dimen>
+    <dimen name="spacingNormal">16dp</dimen>
+    <dimen name="spacingSmall">8dp</dimen>
+    <dimen name="spacingTiny">4dp</dimen>
+
+    <dimen name="imgBtnSize">24dp</dimen>
+</resources>

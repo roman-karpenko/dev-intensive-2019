@@ -1,7 +1,5 @@
 package ru.skillbranch.devintensive.extensions
 
-import java.lang.StringBuilder
-
 fun String.truncate(n:Int = 16): String {
     val newString = this.trimEnd()
     var n = n
