@@ -46,7 +46,7 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
     enum class Question (val question: String, val answers:List<String>) {
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun validate(answer: String): String? {
-                return if (answer[0] != answer[0].toUpperCase()) {
+                return if (answer.isEmpty() || answer[0] != answer[0].toUpperCase()) {
                     "Имя должно начинаться с заглавной буквы"
                 }
                 else {
@@ -56,7 +56,7 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun validate(answer: String): String? {
-                return if (answer[0] != answer[0].toLowerCase()) {
+                return if (answer.isEmpty() || answer[0] != answer[0].toLowerCase()) {
                     "Профессия должна начинаться со строчной буквы"
                 }
                 else {
@@ -66,7 +66,7 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood")) {
             override fun validate(answer: String): String? {
-                if (Regex("[1-9]").find(answer)!=null) {
+                if (Regex("[0-9]").find(answer)!=null) {
                     return "Материал не должен содержать цифр"
                 }
                 else {
@@ -76,7 +76,7 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
         },
         BDAY("Когда меня создали?", listOf("2993")) {
             override fun validate(answer: String): String? {
-                if (Regex("[^1-9]").find(answer)!=null) {
+                if (Regex("[^0-9]").find(answer)!=null) {
                     return "Год моего рождения должен содержать только цифры"
                 }
                 else {
@@ -86,7 +86,7 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
         },
         SERIAL("Мой серийный номер?", listOf("2716057")) {
             override fun validate(answer: String): String? {
-                if (Regex("[1-9]{7}").find(answer) == null) {
+                if (Regex("[0-9]{7}").find(answer) == null) {
                     return "Серийный номер содержит только цифры, и их 7"
                 }
                 else {
