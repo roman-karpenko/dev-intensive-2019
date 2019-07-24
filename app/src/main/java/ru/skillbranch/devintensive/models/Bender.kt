@@ -14,11 +14,11 @@ class Bender (var status:Status = Status.NORMAL, var question:Question = Questio
             "Отлично - ты справился\n${question.question}" to status.color
         }
         else {
-            val wrongAnswer: String = "Это неправильный ответ"
+            val wrongAnswer = "Это неправильный ответ"
             if (status == Status.CRITICAL) {
                 status = Status.NORMAL
                 question = Question.NAME
-                "$wrongAnswer. Давай всё по новой\n${question.question}" to status.color
+                "$wrongAnswer. Давай все по новой\n${question.question}" to status.color
             }
             else {
                 status = status.nextStatus()
